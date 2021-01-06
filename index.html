@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="./assets/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"></script>
     <title>Weather Tracker</title>
 </head>
 <body>
     <!-- Header -->
-    <header>Weather Dashboard</header>
+    <header>
+        <h1 id="headerContent">Weather Dashboard</h1>
+    </header>
 
     <!-- City Container -->
     <div class="container">
@@ -17,7 +19,9 @@
         <div class="search">
             <label for="cityName">Search for a city:</label><br>
             <input type="text" id="cityName" value="City Name">
-            <button type="button"><i class="fas fa-search"></i></button> 
+            <button type="button">
+                <i class="fas fa-search"></i>
+            </button> 
         </div>
 
         <!-- Where the cities will append -->

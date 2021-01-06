@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"></script>
+    <title>Weather Tracker</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>Weather Dashboard</header>
+
+    <!-- City Container -->
+    <div class="container">
+        <!-- Search Bar-->
+        <div class="search">
+            <label for="cityName">Search for a city:</label><br>
+            <input type="text" id="cityName" value="City Name">
+            <button type="button"><i class="fas fa-search"></i></button> 
+        </div>
+
+        <!-- Where the cities will append -->
+        <div class="showCity"></div>
+    </div>
+
+    <!-- City information container -->
+    <div class="container">
+        <!-- Retrieve city name from element in array -->
+        <h2 id="displayName">PLACEHOLDER</h2>
+        <br>
+
+        <!-- Retrieve info from api and insert into span -->
+        <p class="cityInfo">Temperature: <span id="temp"></span></p><br>
+        <p class="cityInfo">Humidity: <span id="humidity"></span></p><br>
+        <p class="cityInfo">Wind Speed: <span id="windSpeed"></span></p><br>
+        <p class="cityInfo">UV Index: <span id="uv"></span></p><br>
+    </div>
+
+    <!-- 5 day forecast container -->
+    <div class="container">
+        <h2 id="forecast">5-Day Forecast:</h2>
+        <br>
+
+        <!-- Where the forecast cards will appear -->
+        <div id="forcastCards"></div>
+    </div>
+
+
+
+
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+</html>

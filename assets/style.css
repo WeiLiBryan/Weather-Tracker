@@ -1,9 +1,10 @@
-.navbar {
-    height: 100px;
-}
-
 html,body { 
     height:100%; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.navbar {
+    height: 100px;
 }
 
 .h1 {
@@ -17,10 +18,9 @@ label {
 
 .sidebar {
     background-color: rgba(218, 214, 214, 0.295);
-    position: static;
-    width: 400px;
+    width: 300px;
     height: 100%;   
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    float: left;
 }
 
 .sidebarHeader, .sidebarBody {
@@ -28,7 +28,7 @@ label {
 }
 
 input {
-    width: 300px;
+    width: 200px;
     height: 40px;
     vertical-align: middle;
 }
@@ -39,4 +39,50 @@ input {
 
 .list-group-item {
     height: 60px;
+}
+
+
+.content {
+    border: solid red;
+    margin: 5px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.cityInfo, .forecastInfo {
+    margin: 10px;
+    position: relative;
+}
+
+.forecastInfo {
+    float: left;
+    width: 100%;
+}
+
+.forecastCards {
+    display: flex;
+    flex-direction: row;
+    float: left;
+}
+
+.dayCard {
+    background-color: #0d6efd;
+    height: fit-content;
+    width: 10rem;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin: 10px;
+    position: absolute;
+}
+
+.cardHeader {
+    font-size: 1.5rem;
+}
+
+.cardInfo {
+    text-align: left;
 }

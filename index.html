@@ -9,64 +9,66 @@
     <title>Weather Tracker</title>
 </head>
 <body>
-    <!-- Header -->
-    <nav class="navbar navbar-dark bg-dark">
+     <!-- Header -->
+     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <span class="navbar-brand h1 mx-auto">Weather Dashboard</span>
         </div>
     </nav>
 
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- SIDEBAR HEADER -->
+        <div class="sidebarHeader">
+            <label>Search for a city:</label><br>
+            <input type="text" class="cityName" placeholder="City Name">
+            <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+        </div>
 
-    <!-- City Container -->
-    <div class="cityContainer">
-        <div class="cityContents">
-            <!-- Search Bar-->
-            <div class="search">
-                <form>
-                    <label for="floatingInput">Search for a city name:</label>
-                    <input type="text" class="form-control cityName" placeholder="City Name">
-                    <button type="btn btn-primary"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-            <br>
-            
-            <!-- Where the cities will append -->
-            <div class="showCity">CITY PLACEHOLDER</div>
+        <!-- SIDEBAR BODY -->
+        <div class="sidebarBody">
+            <button class="list-group-item list-group-item-action">AUSTIN</button>
+            <button class="list-group-item list-group-item-action">NEW YORK</button>
         </div>
     </div>
 
-
-
-    <!-- City information container -->
-    <div class="container cityInfo">
-        <!-- Retrieve city name from element in array -->
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
+    <!-- DIV HOLDS MAIN CONTENT -->
+    <div class="content">
+    <!-- CONTAINS INFO ABOUT CHOSEN CITY -->
+        <div class="cityInfo">
+            <div class="card" style="width: 40rem;">
+                <div class="card-body">
+                    <h2 class="cityName">CITY NAME <span id="weatherCondition"></span></h2>
+                    <p class="cityInfo">
+                        Temperature: <span id="temp"></span><br><br>
+                        Humidity: <span id="humidity"></span><br><br>
+                        Wind Speed: <span id="windSpeed"></span><br><br>
+                        UV Index: <span id="uv"></span><br><br>
+                    </p>
+                </div>
             </div>
-          </div>
+        </div>
 
-        <!-- Retrieve info from api and insert into span -->
-        <p class="cityInfo">Temperature: <span id="temp"></span></p><br>
-        <p class="cityInfo">Humidity: <span id="humidity"></span></p><br>
-        <p class="cityInfo">Wind Speed: <span id="windSpeed"></span></p><br>
-        <p class="cityInfo">UV Index: <span id="uv"></span></p><br>
+
+        <!-- 5 DAY FORECAST -->
+        <div class="forecastInfo">
+            <h2>5-Day Forecast:</h2>
+
+            <!-- Where the forecast cards will appear -->
+            <div id="forecastCards">
+
+                <div class="dayCard">
+                    <h2 class="cardHeader">DATE</h2><hr>
+                    <i>ICON</i><br><br>
+                    <p class="cardInfo">
+                        Temp: <span class="dayTemp"></span><br>
+                        Humidity: <span class="dayHumid"></span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
     </div>
-
-    <!-- 5 day forecast container -->
-    <div class="forecastInfo container">
-        <h2 id="forecast">5-Day Forecast:</h2>
-        <br>
-
-        <!-- Where the forecast cards will appear -->
-        <div id="forcastCards"></div>
-    </div>
-
-
 
 
     <script src="jquery-3.5.1.min.js"></script>

@@ -16,26 +16,39 @@
         </div>
     </nav>
 
+
     <!-- City Container -->
-    <div class="container">
-        <!-- Search Bar-->
-        <div class="search">
-            <label for="cityName">Search for a city:</label><br>
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button type="button" class="btn btn-primary">
-                <i class="fas fa-search"></i>
-            </button> 
+    <div class="cityContainer">
+        <div class="cityContents">
+            <!-- Search Bar-->
+            <div class="search">
+                <form>
+                    <label for="floatingInput">Search for a city name:</label>
+                    <input type="text" class="form-control cityName" placeholder="City Name">
+                    <button type="btn btn-primary"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <br>
+            
+            <!-- Where the cities will append -->
+            <div class="showCity">CITY PLACEHOLDER</div>
         </div>
-        <br>
-        <!-- Where the cities will append -->
-        <div class="showCity"></div>
     </div>
 
+
+
     <!-- City information container -->
-    <div class="container">
+    <div class="container cityInfo">
         <!-- Retrieve city name from element in array -->
-        <h2 id="displayName">PLACEHOLDER</h2>
-        <br>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
 
         <!-- Retrieve info from api and insert into span -->
         <p class="cityInfo">Temperature: <span id="temp"></span></p><br>
@@ -45,7 +58,7 @@
     </div>
 
     <!-- 5 day forecast container -->
-    <div class="container">
+    <div class="forecastInfo container">
         <h2 id="forecast">5-Day Forecast:</h2>
         <br>
 

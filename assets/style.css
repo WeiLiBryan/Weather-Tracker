@@ -43,7 +43,6 @@ input {
 
 
 .content {
-    border: solid red;
     margin: 5px;
     display: flex;
     position: relative;
@@ -55,11 +54,7 @@ input {
 .cityInfo, .forecastInfo {
     margin: 10px;
     position: relative;
-}
-
-.forecastInfo {
-    float: left;
-    width: 100%;
+    width: fit-content;
 }
 
 .forecastCards {
@@ -76,7 +71,7 @@ input {
     text-align: center;
     padding: 15px;
     margin: 10px;
-    position: absolute;
+    float: left;
 }
 
 .cardHeader {
@@ -85,4 +80,8 @@ input {
 
 .cardInfo {
     text-align: left;
+}
+
+hr {
+    color: black;
 }

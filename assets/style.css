@@ -18,7 +18,7 @@ label {
 
 .sidebar {
     background-color: rgba(218, 214, 214, 0.295);
-    width: 300px;
+    width: 20em;
     height: 100%;   
     float: left;
 }

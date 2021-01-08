@@ -1,28 +1,31 @@
-$(document).ready(function() {
-// USED TO COUNT MAX AMOUNT OF CITIES IN SIDEBAR
 var cities = [];
 
+$(document).ready(function() {
+
 // CHECKS IF ANY CITIES ARE IN LOCAL STORAGE THEN DISPLAYS THEM
-pullCity();
+var localCities = JSON.parse(localStorage.getItem("city"));
+if (localCities) {
+    cities = pullCity(localCities);
+}
 
 // PULLS FROM LOCAL STORAGE AND GENERATES BUTTONS
-function pullCity() {
-    var cities = JSON.parse(localStorage.getItem("city"));
+function pullCity(cities) {
 
-    if (cities){
-        for (var i=0;i<cities.length;i++) {
-            cityBtn(cities[i]);
-        }
+    for (var i=0;i<cities.length;i++) {
+        cityBtn(cities[i]);
     }
+
+    return localCities;
 }
 
 
 // GENERATES CITY ACCORDING TO USER INPUT THEN APPENDS IT TO SIDEBAR
-function makeCity(cityName) {
+function makeCity() {
     // RETRIEVE DATA FROM INPUTFIELD THEN UPPERCASE IT
     var cityName = ($(".cityName").val()).toUpperCase();
     console.log("City Entered: " + cityName);
 
+    
     cities.push(cityName);
     console.log("City Array: " + cities);
 
@@ -40,7 +43,7 @@ function cityBtn(cityName){
     cityBtn.text(cityName);
 
     // APPEND TO SIDEBAR BODY
-    $(".sidebarBody").append(cityBtn);
+    $(".sidebarBody").prepend(cityBtn);
 }
 
 // SAVES TO LOCAL STORAGE
@@ -50,18 +53,26 @@ function saveCity(cities) {
 
 // SEARCH BUTTON EVENT LISTENER
 $(".search").on("click", function() {
-
     // CHECKS ARRAY LENGTH TO MAKE SURE ITS LESS THAN 10
-    if (cities.length < 11) {
-        // HAVE CITY THAT USER ENTERED DISPLAY IN BODY
-        makeCity();
+    if (cities.length > 9){
+        if($(".cityName").val() !== ""){
+            cities.shift();
+            makeCity();
+        }
+    }
+    else {
+        if($(".cityName").val() !== ""){
+            makeCity();
+        }
     }
 
     // CLEARS INPUT FIELD
     $(".cityName").val("");
 });
 
-
-
-
+// CLEAR BUTTON REMOVES ALL ELEMENTS FROM SIDEBAR AND CLEARS LOCAL STORAGE
+$(".close").on("click", function() {
+    $(".sidebarBody").empty();
+    localStorage.clear();
+});
 });

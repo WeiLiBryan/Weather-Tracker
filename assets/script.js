@@ -65,7 +65,7 @@ function setCityInfo(response) {
     var windSpeed = $("#windSpeed");
     var uv = $("#uv");
     var iconcode = response.list[0].weather[0].icon;
-    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
 
     cityName.text(response.city.name);
     weatherIcon.attr("src", iconurl);
@@ -112,7 +112,7 @@ function generateCards(day, k) {
 
     var weatherIcon = $("<img>");
     var iconcode = day[k].weather[0].icon;
-    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
     weatherIcon.attr("src", iconurl);
 
     var cardInfo = $("<div>");
@@ -145,7 +145,7 @@ function generateCards(day, k) {
 };
 
 function retrieveInfo(selectCity) {
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + selectCity + "&units=imperial&appid=de496400dd500d58250dee54250a157f";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + selectCity + "&units=imperial&appid=de496400dd500d58250dee54250a157f";
 
     $.ajax({
         url: queryURL,

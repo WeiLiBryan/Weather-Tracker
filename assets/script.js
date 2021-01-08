@@ -145,7 +145,7 @@ function generateCards(day, k) {
 };
 
 function retrieveInfo(selectCity) {
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + selectCity + "&units=imperial&appid=de496400dd500d58250dee54250a157f";
+    var queryURL = "api.openweathermap.org/data/2.5/forecast?q=" + selectCity + "&units=imperial&appid=de496400dd500d58250dee54250a157f";
 
     $.ajax({
         url: queryURL,

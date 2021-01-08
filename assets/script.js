@@ -38,6 +38,10 @@ function makeCity() {
 // GENERATES BUTTON
 function cityBtn(cityName){
 
+    if ($(".sidebarBody").children().length > 6) {
+        $(".sidebarBody :last-child").remove();
+    }
+
     var cityBtn = $('<button>');
     cityBtn.attr("class", "list-group-item list-group-item-action");
     cityBtn.text(cityName);
@@ -53,8 +57,8 @@ function saveCity(cities) {
 
 // SEARCH BUTTON EVENT LISTENER
 $(".search").on("click", function() {
-    // CHECKS ARRAY LENGTH TO MAKE SURE ITS LESS THAN 10
-    if (cities.length > 9){
+    // CHECKS ARRAY LENGTH TO MAKE SURE ITS LESS THAN 7
+    if (cities.length > 6){
         if($(".cityName").val() !== ""){
             cities.shift();
             makeCity();
@@ -75,4 +79,6 @@ $(".close").on("click", function() {
     $(".sidebarBody").empty();
     localStorage.clear();
 });
+
+
 });

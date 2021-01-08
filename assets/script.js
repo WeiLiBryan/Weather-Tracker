@@ -56,6 +56,7 @@ function saveCity(cities) {
     localStorage.setItem("city", JSON.stringify(cities));
 };
 
+// FUNCTION SETS INFO IN CARD BASED ON CITY NAME FROM API
 function setCityInfo(response) {
     var cityName = $("#cityName");
     var weatherIcon = $("<img>");
@@ -63,7 +64,7 @@ function setCityInfo(response) {
     var humidity = $("#humidity");
     var windSpeed = $("#windSpeed");
     var uv = $("#uv");
-    var iconcode = response.list[1].weather[0].icon;
+    var iconcode = response.list[0].weather[0].icon;
     var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
     cityName.text(response.city.name);
@@ -78,13 +79,69 @@ function setCityInfo(response) {
 
 };
 
-function setForecast() {
-    var forecastCards = $(".forecastInfo");
-    var dayCard = $("<div>");
-    var cardHeader = $("<h2>");
-    var br = $("<br>");
-    
+// FUNCTION SETS FORECAST BASED ON INFO FROM API
+function setForecast(response) {
+    // STORE 5 DAYS INFO IN ARRAY
+    var day = [];
+    for (var k=0; k<5; k++){
+        day[k] = response.list[k];
+        console.log(day);
 
+        // GENERATING CARDS
+        generateCards(day, k);
+    }
+};
+
+// FUNCTION GENERATES CARDS AND POPULATES THEM WITH INFORMATION REGARDING THE DAY
+function generateCards(day, k) {
+    var forecastCards = $("#forecastCards");
+
+    var dayCard = $("<div>");
+    dayCard.attr("class", "dayCard");
+
+    var cardHeader = $("<h2>");
+    cardHeader.attr("class", "cardHeader");
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+
+    cardHeader.text(mm + " / " + (parseInt(dd)+k));
+
+    var br = $("<br>");
+
+    var weatherIcon = $("<img>");
+    var iconcode = day[k].weather[0].icon;
+    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    weatherIcon.attr("src", iconurl);
+
+    var cardInfo = $("<div>");
+    cardInfo.attr("class", "cardInfo");
+
+    var p1 = $("<p>");
+    p1.text("Temp: ");
+    var p2 = $("<p>");
+    p2.text("Humidity: ");
+
+    var span1 = $("<span>");
+    span1.attr("class", "dayTemp");
+    span1.text(day[k].main.temp + " °F");
+    var span2 = $("<span>");
+    span2.attr("class", "dayHumid");
+    span2.text(day[k].main.humidity + " %");
+
+    p1.append(span1);
+    p2.append(span2);
+
+    cardInfo.append(p1);
+    cardInfo.append(p2);
+
+    dayCard.append(cardHeader);
+    dayCard.append(weatherIcon);
+    dayCard.append(br);
+    dayCard.append(cardInfo);
+
+    forecastCards.append(dayCard);
 };
 
 function retrieveInfo(selectCity) {
@@ -95,6 +152,7 @@ function retrieveInfo(selectCity) {
         method: "GET"
       }).then(function(response) {
         console.log(response);
+        $('#forecastCards').empty();
         setCityInfo(response);
         setForecast(response);
       });
@@ -128,7 +186,7 @@ $(".close").on("click", function() {
     localStorage.clear();
 });
 
-
+// POPULATES MAIN CONTENT WITH INFORMATION OF CITY
 $(".sidebarBody").on("click", ".cityBtn", function() {
     var selectCity = $(this).text();
     console.log(selectCity);

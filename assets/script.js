@@ -5,18 +5,18 @@ $(document).ready(function() {
 // CHECKS IF ANY CITIES ARE IN LOCAL STORAGE THEN DISPLAYS THEM
 var localCities = JSON.parse(localStorage.getItem("city"));
 if (localCities) {
-    cities = pullCity(localCities);
-}
+    cities = setLocalCities(localCities);
+};
 
 // PULLS FROM LOCAL STORAGE AND GENERATES BUTTONS
-function pullCity(cities) {
+function setLocalCities(cities) {
 
     for (var i=0;i<cities.length;i++) {
         cityBtn(cities[i]);
     }
 
-    return localCities;
-}
+    return cities;
+};
 
 
 // GENERATES CITY ACCORDING TO USER INPUT THEN APPENDS IT TO SIDEBAR
@@ -25,7 +25,7 @@ function makeCity() {
     var cityName = ($(".cityName").val()).toUpperCase();
     console.log("City Entered: " + cityName);
 
-    
+    // PUSH INTO CITIES ARRAY FOR SAVING
     cities.push(cityName);
     console.log("City Array: " + cities);
 
@@ -33,27 +33,72 @@ function makeCity() {
     saveCity(cities);
     // GENERATE CITY BUTTON AND APPEND IT
     cityBtn(cityName);
-}
+};
 
 // GENERATES BUTTON
 function cityBtn(cityName){
 
+    // REMOVES LAST CHILD IF AMOUNT OF CHILDREN GROWS ABOVE 7
     if ($(".sidebarBody").children().length > 6) {
         $(".sidebarBody :last-child").remove();
     }
 
     var cityBtn = $('<button>');
-    cityBtn.attr("class", "list-group-item list-group-item-action");
+    cityBtn.attr("class", "list-group-item list-group-item-action cityBtn");
     cityBtn.text(cityName);
 
     // APPEND TO SIDEBAR BODY
     $(".sidebarBody").prepend(cityBtn);
-}
+};
 
 // SAVES TO LOCAL STORAGE
 function saveCity(cities) {
     localStorage.setItem("city", JSON.stringify(cities));
-}
+};
+
+function setCityInfo(response) {
+    var cityName = $("#cityName");
+    var weatherIcon = $("<img>");
+    var temp = $("#temp");
+    var humidity = $("#humidity");
+    var windSpeed = $("#windSpeed");
+    var uv = $("#uv");
+    var iconcode = response.list[1].weather[0].icon;
+    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+
+    cityName.text(response.city.name);
+    weatherIcon.attr("src", iconurl);
+    weatherIcon.attr("class", "weatherIcon");
+    cityName.append(weatherIcon);
+
+    temp.text(response.list[0].main.temp + " °F");
+    humidity.text(response.list[0].main.humidity + " %");
+    windSpeed.text(response.list[0].wind.speed + " MPH");
+    // uv.val()
+
+};
+
+function setForecast() {
+    var forecastCards = $(".forecastInfo");
+    var dayCard = $("<div>");
+    var cardHeader = $("<h2>");
+    var br = $("<br>");
+    
+
+};
+
+function retrieveInfo(selectCity) {
+    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + selectCity + "&units=imperial&appid=de496400dd500d58250dee54250a157f";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        setCityInfo(response);
+        setForecast(response);
+      });
+};
 
 // SEARCH BUTTON EVENT LISTENER
 $(".search").on("click", function() {
@@ -70,6 +115,9 @@ $(".search").on("click", function() {
         }
     }
 
+    var selectCity = $(".cityName").val();
+    retrieveInfo(selectCity);
+
     // CLEARS INPUT FIELD
     $(".cityName").val("");
 });
@@ -78,6 +126,13 @@ $(".search").on("click", function() {
 $(".close").on("click", function() {
     $(".sidebarBody").empty();
     localStorage.clear();
+});
+
+
+$(".sidebarBody").on("click", ".cityBtn", function() {
+    var selectCity = $(this).text();
+    console.log(selectCity);
+    retrieveInfo(selectCity);
 });
 
 

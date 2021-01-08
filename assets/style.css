@@ -85,3 +85,7 @@ input {
 hr {
     color: black;
 }
+
+#cityName {
+    font-weight: bold;
+}

@@ -64,6 +64,17 @@ function setCityInfo(response) {
     var humidity = $("#humidity");
     var windSpeed = $("#windSpeed");
     var uv = $("#uv");
+
+    // var lat = response.city.coord.lat;
+    // var lon = response.city.coord.lon;
+    // var UVQueryURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&appid=de496400dd500d58250dee54250a157f";
+    // $.ajax({
+    //     url: UVQueryURL,
+    //     method: "GET"
+    //   }).then(function(uvQuality) {
+    //     console.log("THIS ONE: " + uvQuality);
+    //   });
+
     var iconcode = response.list[0].weather[0].icon;
     var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
 
@@ -145,7 +156,7 @@ function generateCards(day, k) {
 };
 
 function retrieveInfo(selectCity) {
-    var queryURL = "api.openweathermap.org/data/2.5/forecast?q=" + selectCity + "&units=imperial&appid=de496400dd500d58250dee54250a157f";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + selectCity + "&units=imperial&appid=de496400dd500d58250dee54250a157f";
 
     $.ajax({
         url: queryURL,

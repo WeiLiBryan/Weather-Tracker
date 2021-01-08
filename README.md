@@ -2,7 +2,7 @@
 ----------------------
 ## Description
 
-Application will take in city name and display weather information
+Application will let user input city name and display weather information.
 
 ## Prerequisites
 
